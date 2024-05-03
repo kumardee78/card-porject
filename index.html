@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/087ba84a5c.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        body{
+            background-color: aqua;
+            height: 100vh;
+        }
+        #container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 1rem;
+            padding: 5rem 0;
+        }
+        p{
+            font-family: "cooper black";
+            margin: 1rem;
+            
+        }
+        h1{
+            font-family: broadway;
+            margin-bottom: 1.5rem;
+            background-color: red;
+            padding: 0.5rem 10rem;
+        }
+
+        #form{
+            display: flex;
+            text-align: left;
+            width: 400px;
+            border-radius: 0.5rem;
+            padding: 1rem 2rem;
+            background-color: whitesmoke;
+            box-shadow: 0.2rem 0.2rem 1rem 0.01rem;
+        }
+        span{
+           padding-left: 2rem;
+           font-family: "cooper black";
+           display: block;
+           margin: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>User Information Card</h1>
+        <div id="form">
+            <div>
+                <p>First Name :</p>
+                <p>Last Name :</p>
+                <p>Country :</p>
+                <p>Phone Number <i class="fa-solid fa-phone"></i> :</p>
+                <p>State :</p>
+                <p>City :</p>
+                <p>Village :</p>
+            </div>
+            <div>
+                <span id="fname"></span>
+                <span id="lname"></span>
+                <span id="country"></span>
+                <span id="phone"></span>
+                <span id="state"></span>
+                <span id="city"></span>
+                <span id="village"></span>
+            </div>
+        </div>
+    </div>
+   
+    <script >
+        var user = {
+            "fname":"",
+            "lname":"",
+            "country":"",
+            "phone":"",
+            "state":"",
+            "city":"",
+            "village":"",
+        }
+        function TakeData()
+        {
+            var firstname = prompt("Enter you Name")
+            var lastname = prompt("Enter your last name")
+            var country = prompt("Enter your Country")
+            var phone = prompt("Enter your phone")
+            var state = prompt("Entr your State")
+            var city= prompt("Entr your City")
+            var village= prompt("Entr your village")
+            
+            user.fname = firstname;
+            user.lname = lastname;
+            user.country = country
+            user.phone = phone;
+            user.state = state;
+            user.cit = city;
+            user.village = village;
+
+            localStorage.setItem("user", JSON.stringify(user))
+            displayFunction();
+        }
+        function displayFunction()
+        {
+            document.getElementById("fname").innerText = user.fname;
+            document.getElementById("lname").innerText = user.lname;
+            document.getElementById("country").innerText = user.country;
+            document.getElementById("phone").innerText = user.phone;
+            document.getElementById("state").innerText = user.state;
+            document.getElementById("city").innerText = user.city;
+            document.getElementById("village").innerText = user.village;
+        }
+
+        window.addEventListener("load", () => {
+            if(localStorage.getItem("user"))
+            {
+                user = JSON.parse(localStorage.getItem("user"))
+                displayFunction();
+            }
+            else
+            {
+            TakeData()
+            }
+        })
+    </script>
+</body>
+</html>
